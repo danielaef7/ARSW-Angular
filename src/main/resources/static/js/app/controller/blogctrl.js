@@ -6,20 +6,13 @@ app.controller("blogCtrl", function($scope,$log,$http) {
     $scope.entries = [];
     $log.debug('se creo el $scope');
 	$scope.loadData = function() {
-        var configList = {
+        $http({
                 method: "GET",
                 url: "blogs"
-                    };
-
-        var response=$http(configList);
-
-        response.success(function(data, status, headers, config) {
-            $scope.entries = data;
-            });
-
-        response.error(function(data, status, headers, config) {
-            alert("Ha fallado la petición. Estado HTTP:"+status);
+                }).success(function(data){
+		  $scope.entries = data;
+		}).error(function(data,status,headers,config){
+		  alert("Ha fallado la petición. Estado HTTP:"+status);
             });
     };
-    $scope.loadData();
 });
