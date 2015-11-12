@@ -11,18 +11,23 @@
     </head>
     <body ng-controller="blogCtrl">
         <div>
-            <form>
+            <form ng-submit="processForm()">
             <fieldset>
                 <legend>Entry</legend>
                 <label for='title'>Title:</label><input id='title' name='title' type="text" ng-model= "entry.title">
                 <label for='content'>Content:</label><input id='content' name='content' type="text" ng-model= "entry.content">
-          </form>
+                <button type="submit" class="btn btn-success">
+                  <span class="glyphicon glyphicon-plus">Crear
+                </button> 
+            </form>
         </div>
+
 <table class="table">
           <tr>
             <th>Título </th>
             <th>Contenido</th>
             <th>Editar </th>
+            <th>Eliminar </th>
           </tr>
 
           <tr ng-repeat="e in entries">
@@ -32,6 +37,10 @@
               <button type="button" class="btn btn-warning"  ng-click="edit($index)">
                 Editar
               </button>
+            <td>
+                <button type="button" class="btn btn-success"  ng-click="delete($index)">
+                  Eliminar
+                </button>
             </td>
           </tr>
         </table>
